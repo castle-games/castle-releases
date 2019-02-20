@@ -32,7 +32,7 @@ if (platform === 'mac') {
   child_process.execSync(`git add ${zipDest}`);
   child_process.execSync(`git commit -m "mac: add '${zipName}'"`);
   child_process.execSync('git push origin master');
-  const commit = child_process.execSync('git rev-parse HEAD');
+  const commit = child_process.execSync('git rev-parse HEAD').strip();
 
   // Let our server know a new release exists
   request.post(
