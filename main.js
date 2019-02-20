@@ -3,6 +3,7 @@ const request = require('request');
 const child_process = require('child_process');
 
 // Make sure the tree is clean
+console.log('Making sure tree is clean...');
 if (child_process.execSync('git diff HEAD').length !== 0) {
   console.log('Tree is dirty, aborting');
   process.exit(1);
@@ -23,18 +24,23 @@ if (platform === 'mac') {
   const zipPath = process.argv[3];
   const zipName = zipPath.match('[^/]*$')[0];
   const zipDest = `mac/${zipName}`;
+  console.log(`Moving '${zipPath}' to '${zipDest}'...`);
   fs.renameSync(zipPath, zipDest);
 
   // Update 'appcast.xml' and generate '.delta's
+  console.log(`Generating 'mac/appcast.xml'...`);
   child_process.execSync('./Sparkle-bin/generate_appcast mac/');
 
   // Make and push a commit
-  child_process.execSync(`git add ${zipDest}`);
-  child_process.execSync(`git commit -m "mac: add '${zipName}'"`);
+  console.log('Committing...');
+  child_process.execSync(`git add ${zipDest} mac/appcast.xml`);
+  child_process.execSync(`git commit -m "mac: release '${zipName}'"`);
+  console.log('Pushing...');
   child_process.execSync('git push origin master');
   const commit = child_process.execSync('git rev-parse HEAD').strip();
 
   // Let our server know a new release exists
+  console.log('Updating release tag on Castle server...');
   request.post(
     {
       url: 'https://api.castle.games/api/releases/set-tag',
