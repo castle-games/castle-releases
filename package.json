@@ -1,9 +1,9 @@
 {
-  "name": "ci",
+  "name": "castle-releases",
   "version": "1.0.0",
   "description": "",
-  "main": "upload_script.js",
-  "bin": "upload_script.js",
+  "main": "main.js",
+  "bin": "main.js",
   "author": "",
   "license": "ISC",
   "scripts": {
