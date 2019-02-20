@@ -25,7 +25,8 @@ if (platform === 'mac') {
   const zipDest = `mac/${zipName}`;
   fs.renameSync(zipPath, zipDest);
 
-  // TODO: make Sparkle appcast here
+  // Update 'appcast.xml' and generate '.delta's
+  child_process.execSync('./Sparkle-bin/generate_appcast mac/');
 
   // Make and push a commit
   child_process.execSync(`git add ${zipDest}`);
