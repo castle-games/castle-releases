@@ -1,0 +1,59 @@
+const fs = require("fs");
+const request = require("request");
+const child_process = require("child_process");
+
+// Make sure the tree is clean
+if (child_process.execSync("git diff HEAD").length !== 0) {
+  console.log("Tree is dirty, aborting");
+  process.exit(1);
+}
+
+// Read the Castle server auth token
+let token = process.env["CASTLE_UPLOAD_TOKEN"];
+if (!token) {
+  const tokenFilename =
+    process.env["DOWNLOADSECUREFILE_SECUREFILEPATH"] ||
+    "../../ghost-secret/ci-secret-file.txt";
+  token = fs.readFileSync(tokenFilename, "utf8");
+}
+
+const platform = process.argv[2];
+
+if (platform === "mac") {
+  // Move the '.zip' into 'mac/'
+  const zipPath = process.argv[3];
+  const zipName = zipPath.match("[^/]*$")[0];
+  const zipDest = `mac/${zipName}`;
+  fs.renameSync(zipPath, zipDest);
+
+  // TODO: make Sparkle appcast here
+
+  // Make and push a commit
+  child_process.execSync(`git add ${zipDest}`);
+  child_process.execSync(`git commit -m "mac: add '${zipName}'"`);
+  child_process.execSync("git push origin master");
+  const commit = child_process.execSync("git rev-parse HEAD");
+
+  // Let our server know a new release exists
+  request.post(
+    {
+      url: "https://api.castle.games/api/releases/set-tag",
+      headers: {
+        "X-Auth-Token": token
+      },
+      qs: {
+        platform: process.argv[2],
+        tag: commit
+      }
+    },
+    function(err, resp, body) {
+      if (err || resp.statusCode !== 200) {
+        console.log("Error! " + resp.body);
+        process.exit(1);
+      } else {
+        console.log("Success!");
+        process.exit(0);
+      }
+    }
+  );
+}
