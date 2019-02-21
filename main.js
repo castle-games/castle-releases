@@ -37,7 +37,7 @@ if (platform === 'mac') {
   child_process.execSync(`git commit -m "mac: release '${zipName}'"`);
   console.log('Pushing...');
   child_process.execSync('git push origin master');
-  const commit = child_process.execSync('git rev-parse HEAD').strip();
+  const commit = child_process.execSync('git rev-parse HEAD').trim();
 
   // Let our server know a new release exists
   console.log('Updating release tag on Castle server...');
