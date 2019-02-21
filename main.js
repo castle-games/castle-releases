@@ -37,7 +37,7 @@ if (platform === 'mac') {
 
   // Make and push a commit
   console.log('Committing...');
-  child_process.execSync(`git add ${zipDest} mac/appcast.xml`);
+  child_process.execSync('git add mac/*');
   child_process.execSync(`git commit -m "mac: release '${zipName}'"`);
   console.log('Pushing...');
   child_process.execSync('git push origin master');
