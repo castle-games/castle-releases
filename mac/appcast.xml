@@ -24,6 +24,17 @@
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.56-1.55.delta" sparkle:version="1.56" sparkle:shortVersionString="1.56" sparkle:deltaFrom="1.55" length="9719" type="application/octet-stream" sparkle:edSignature="pIvuOI4xeQmLy65zcmSEHs8WrYV1rthUHrOJmF+UcY1czzojVODRIZxSl+5NKFqKoSNdntTkY+7M/w4QTUC3Ag=="/>
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.56-1.51.delta" sparkle:version="1.56" sparkle:shortVersionString="1.56" sparkle:deltaFrom="1.51" length="9608" type="application/octet-stream" sparkle:edSignature="nd42mbFW0pr+Wm2B1FcYvJytXyPJBeHRFTvjpJbzLMozO7lmD8FYGjlNmNQtLTxI4H6QoQuG5VQZryBGAR5yCg=="/></sparkle:deltas>
 </item>
+<item>
+<title>1.57</title>
+<pubDate>Wed, 20 Feb 2019 19:17:15 -0800</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.57.zip" sparkle:version="1.57" sparkle:shortVersionString="1.57" length="79371738" type="application/octet-stream" sparkle:edSignature="qQujHm46lw04rAWJBDLb9C8PZhcHy7W8VZW4NiYRAXu0DRXSDPDfn8fY59IriUw2AhbVCuVwMUgcJ83HV6jSBA=="/>
+<sparkle:deltas>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.57-1.56.delta" sparkle:version="1.57" sparkle:shortVersionString="1.57" sparkle:deltaFrom="1.56" length="9738" type="application/octet-stream" sparkle:edSignature="v8fYXq7AaF63eTQhCj6mnVVpyO4jYYvAxVlYYJO/bPoqLMQwKZoAWuvWgI13Miegy9GcPram++4pNG6GGtEUBw=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.57-1.55.delta" sparkle:version="1.57" sparkle:shortVersionString="1.57" sparkle:deltaFrom="1.55" length="5412" type="application/octet-stream" sparkle:edSignature="0UXm4iS4e3BCfTdFxWmx9DN5dCtlIrZlH/ZGbOTCOYppeiHuH3T7T6noG3whIIjJpCvHdeU3iGlzW4OOg73XDg=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.57-1.51.delta" sparkle:version="1.57" sparkle:shortVersionString="1.57" sparkle:deltaFrom="1.51" length="5514" type="application/octet-stream" sparkle:edSignature="sQrJsufhvC+u3O/gNBSPr7csg9l1bDbcBkzvuQwyop5TxtfcL7IO0u23QMheQND20JkagHa1WGkV9GS5kpoBAw=="/></sparkle:deltas>
+</item>
+
 
 
 </channel></rss>
