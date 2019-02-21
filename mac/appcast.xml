@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="yes"?><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<channel>
+<title>Castle</title>
+<item>
+<title>1.51</title>
+<pubDate>Wed, 20 Feb 2019 15:51:34 -0800</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.51.zip" sparkle:version="1.51" sparkle:shortVersionString="1.51" length="79371622" type="application/octet-stream" sparkle:edSignature="2YNiSXg85DzQby+Qk57AMnkOlh0H0K1aPMRDKBkWLbrbPoBeu7AeN3Bk58ZK+vEARQcH71PQ3EuXvEzK5yajCg=="/>
+</item>
+</channel></rss>
