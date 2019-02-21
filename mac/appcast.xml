@@ -7,4 +7,13 @@
 <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.51.zip" sparkle:version="1.51" sparkle:shortVersionString="1.51" length="79371622" type="application/octet-stream" sparkle:edSignature="2YNiSXg85DzQby+Qk57AMnkOlh0H0K1aPMRDKBkWLbrbPoBeu7AeN3Bk58ZK+vEARQcH71PQ3EuXvEzK5yajCg=="/>
 </item>
+<item>
+<title>1.55</title>
+<pubDate>Wed, 20 Feb 2019 18:24:59 -0800</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.55.zip" sparkle:version="1.55" sparkle:shortVersionString="1.55" length="79371847" type="application/octet-stream" sparkle:edSignature="ytTX0vOcIX+ZsMz8s62s+i5/r4FeX1G0+Uvf2y3drqNWMfTpt+8kOw3DdI8ZB0utSb7XGaXymhURPoOUFIB6BQ=="/>
+<sparkle:deltas>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.55-1.51.delta" sparkle:version="1.55" sparkle:shortVersionString="1.55" sparkle:deltaFrom="1.51" length="5509" type="application/octet-stream" sparkle:edSignature="ZgZNlRpP5rBEYSvOw8K9HV0sKHISEi9iNyD0NtG5bvSuw84igxvsWZnicIP0rJQijxut/X2lw/ZJIIdwLgrUBw=="/></sparkle:deltas>
+</item>
+
 </channel></rss>
