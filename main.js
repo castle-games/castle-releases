@@ -13,7 +13,7 @@ if (child_process.execSync('git diff HEAD').length !== 0) {
 let token = process.env['CASTLE_UPLOAD_TOKEN'];
 if (!token) {
   const tokenFilename =
-    process.env['DOWNLOADSECUREFILE_SECUREFILEPATH'] || '../ghost-secret/ci-secret-file.txt';
+    process.env['DOWNLOADSECUREFILE_SECUREFILEPATH'] || '../../../ghost-secret/ci-secret-file.txt';
   token = fs.readFileSync(tokenFilename, 'utf8');
 }
 
