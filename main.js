@@ -54,6 +54,7 @@ if (platform === 'mac') {
       qs: {
         platform: process.argv[2],
         tag: commit,
+        ['installer-filename']: zipDest,
       },
     },
     function(err, resp, body) {
