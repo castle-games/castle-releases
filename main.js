@@ -38,7 +38,7 @@ if (platform === 'mac') {
   // Make and push a commit
   console.log('Committing...');
   child_process.execSync('git add mac/*');
-  child_process.execSync(`git commit -m "mac: release '${zipName}'"`);
+  child_process.execSync(`git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "mac: release '${zipName}'"`);
   console.log('Pushing...');
   child_process.execSync('git push origin master');
   const commit = child_process.execSync('git rev-parse HEAD').toString().trim();
