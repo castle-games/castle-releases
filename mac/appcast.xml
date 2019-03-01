@@ -126,6 +126,13 @@
 <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.164.zip" sparkle:version="1.164" sparkle:shortVersionString="1.164" length="85104193" type="application/octet-stream"/>
 </item>
+<item>
+<title>1.169</title>
+<pubDate>Thu, 28 Feb 2019 16:18:34 -0800</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.169.zip" sparkle:version="1.169" sparkle:shortVersionString="1.169" length="85105112" type="application/octet-stream"/>
+</item>
+
 
 
 
