@@ -78,7 +78,6 @@ if (platform === 'win') {
     process.exit(0);
   }
 
-  process.platform = 'win32';
   const electronInstaller = require('electron-winstaller');
   try {
     electronInstaller.createWindowsInstaller({
