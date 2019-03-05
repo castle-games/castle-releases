@@ -10,6 +10,7 @@
     "build": "pkg . --targets node10-macos-x64,node10-win-x64"
   },
   "dependencies": {
+    "electron-winstaller": "^3.0.4",
     "request": "^2.88.0"
   },
   "devDependencies": {

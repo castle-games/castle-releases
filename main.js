@@ -68,3 +68,36 @@ if (platform === 'mac') {
     }
   );
 }
+
+if (platform === 'win') {
+  const dirPath = process.argv[3];
+  const version = process.argv[4];
+  const iconPath = process.argv[5];
+  if (!dirPath || !version || !iconPath) {
+    console.log('Usage: castle-releases win <release-dir-path> <version-name> <icon-path>');
+    process.exit(0);
+  }
+
+  const electronInstaller = require('electron-winstaller');
+  try {
+    electronInstaller.createWindowsInstaller({
+      appDirectory: dirPath,
+      outputDirectory: 'win/',
+      authors: 'http://castle.games',
+      exe: 'Castle.exe',
+      description: 'Castle',
+      version,
+      title: 'Castle',
+      name: 'Castle',
+
+      iconUrl: iconPath,
+      setupIcon: iconPath,
+      setupExe: `Castle-${version}.exe`,
+      noMsi: true,
+    });
+    console.log('Success!');
+  } catch (e) {
+    console.log('Error creating installer: ' + e.message);
+    process.exit(0);
+  }
+}
