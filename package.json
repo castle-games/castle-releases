@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "pkg": "^4.3.7"
+  },
+  "pkg": {
+    "assets": "node_modules/electron-winstaller/**/*.*"
   }
 }

@@ -3,11 +3,11 @@ const request = require('request');
 const child_process = require('child_process');
 
 // Make sure the tree is clean
-console.log('Making sure tree is clean...');
-if (child_process.execSync('git diff HEAD').length !== 0) {
-  console.log('Tree is dirty, aborting...');
-  process.exit(1);
-}
+// console.log('Making sure tree is clean...');
+// if (child_process.execSync('git diff HEAD').length !== 0) {
+//   console.log('Tree is dirty, aborting...');
+//   process.exit(1);
+// }
 
 // Read the Castle server auth token
 let token = process.env['CASTLE_UPLOAD_TOKEN'];
@@ -81,6 +81,8 @@ if (platform === 'win') {
   const electronInstaller = require('electron-winstaller');
   try {
     electronInstaller.createWindowsInstaller({
+      usePackageJson: false,
+
       appDirectory: dirPath,
       outputDirectory: 'win/',
       authors: 'http://castle.games',
