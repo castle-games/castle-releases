@@ -77,7 +77,12 @@ if (platform == 'win') {
     process.exit(0);
   }
 
+  // Make our '.exe' 'Squirrel-aware'
+  console.log("Making 'Castle.exe' 'Squirrel-aware'...");
+  child_process.execSync(`./Squirrel-bin/rcedit.exe ${releaseDirPath}/Castle.exe --set-version-string SquirrelAwareVersion 1`);
+
   // Create '.nupkg'
+  console.log(`Creating '.nupkg'...`);
   fs.writeFileSync('Castle.nuspec',
     `<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
@@ -98,6 +103,7 @@ if (platform == 'win') {
   const nupkgPath = `Castle.0.${versionName}.nupkg`;
 
   // Releasify with Squirrel
-  child_process.execSync(`./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win/ --no-msi`, { stdio: 'inherit' });
+  console.log(`'Releasifying' with Squirrel...`);
+  child_process.execSync(`./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --no-msi`, { stdio: 'inherit' });
   fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
 }
