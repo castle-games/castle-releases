@@ -110,7 +110,7 @@ if (platform == 'win') {
   // Releasify with Squirrel
   console.log(`'Releasifying' with Squirrel...`);
   child_process.execSync(
-    `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
+    `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --loadingGif castle3d.gif --no-msi`,
     { stdio: 'inherit' });
   fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
   fs.unlinkSync(`Castle.0.${versionName}.nupkg`);
