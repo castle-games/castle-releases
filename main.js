@@ -3,11 +3,11 @@ const request = require('request');
 const child_process = require('child_process');
 
 // Make sure the tree is clean
-console.log('Making sure tree is clean...');
-if (child_process.execSync('git diff HEAD').length !== 0) {
-  console.log('Tree is dirty, aborting...');
-  process.exit(1);
-}
+// console.log('Making sure tree is clean...');
+// if (child_process.execSync('git diff HEAD').length !== 0) {
+//   console.log('Tree is dirty, aborting...');
+//   process.exit(1);
+// }
 
 // Read the Castle server auth token
 let token = process.env['CASTLE_UPLOAD_TOKEN'];
@@ -57,7 +57,7 @@ if (platform === 'mac') {
         'installer-filename': zipDest,
       },
     },
-    function(err, resp, body) {
+    function (err, resp, body) {
       if (err || resp.statusCode !== 200) {
         console.log('Error! ' + resp.body);
         process.exit(1);
@@ -67,4 +67,32 @@ if (platform === 'mac') {
       }
     }
   );
+}
+
+if (platform == 'win') {
+  const releaseDirPath = process.argv[3];
+  const versionName = process.argv[4];
+  if (!releaseDirPath || !versionName) {
+    console.log('Not enough parameters!');
+    process.exit(0);
+  }
+
+  // Create '.nupkg'
+  fs.writeFileSync('Castle.nuspec',
+    `<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Castle</id>
+    <title>Castle</title>
+    <version>1.${versionName}</version>
+    <authors>http://castle.games</authors>
+    <owners>http://castle.games</owners>
+    <description>Castle</description>
+  </metadata>
+  <files>
+    <file src="**" target="lib\\net45\\" />
+  </files>
+</package>`);
+  child_process.execSync(`./Squirrel-bin/nuget.exe pack -BasePath ${releaseDirPath} -NoDefaultExcludes`, { stdio: 'inherit' });
+  fs.unlinkSync('Castle.nuspec');
 }
