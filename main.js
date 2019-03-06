@@ -19,6 +19,8 @@ if (!token) {
 
 const platform = process.argv[2];
 
+// Example macOS usage:
+//   node main.js mac ../Castle-1.20.zip
 if (platform === 'mac') {
   // Move the '.zip' into 'mac/'
   const zipPath = process.argv[3];
@@ -69,10 +71,13 @@ if (platform === 'mac') {
   );
 }
 
+// Example Windows usage:
+//   node main.js win ../build/Release 1.20 ../extra/castle.ico
 if (platform == 'win') {
   const releaseDirPath = process.argv[3];
   const versionName = process.argv[4];
-  if (!releaseDirPath || !versionName) {
+  const iconPath = process.argv[5];
+  if (!releaseDirPath || !versionName || !iconPath) {
     console.log('Not enough parameters!');
     process.exit(0);
   }
@@ -104,6 +109,8 @@ if (platform == 'win') {
 
   // Releasify with Squirrel
   console.log(`'Releasifying' with Squirrel...`);
-  child_process.execSync(`./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --no-msi`, { stdio: 'inherit' });
+  child_process.execSync(
+    `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
+    { stdio: 'inherit' });
   fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
 }
