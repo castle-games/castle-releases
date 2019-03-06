@@ -84,7 +84,7 @@ if (platform == 'win') {
   <metadata>
     <id>Castle</id>
     <title>Castle</title>
-    <version>1.${versionName}</version>
+    <version>0.${versionName}</version>
     <authors>http://castle.games</authors>
     <owners>http://castle.games</owners>
     <description>Castle</description>
@@ -95,7 +95,7 @@ if (platform == 'win') {
 </package>`);
   child_process.execSync(`./Squirrel-bin/nuget.exe pack -BasePath ${releaseDirPath} -NoDefaultExcludes`, { stdio: 'inherit' });
   fs.unlinkSync('Castle.nuspec');
-  const nupkgPath = `Castle.1.${versionName}.nupkg`;
+  const nupkgPath = `Castle.0.${versionName}.nupkg`;
 
   // Releasify with Squirrel
   child_process.execSync(`./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win/ --no-msi`, { stdio: 'inherit' });
