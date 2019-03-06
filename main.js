@@ -95,4 +95,9 @@ if (platform == 'win') {
 </package>`);
   child_process.execSync(`./Squirrel-bin/nuget.exe pack -BasePath ${releaseDirPath} -NoDefaultExcludes`, { stdio: 'inherit' });
   fs.unlinkSync('Castle.nuspec');
+  const nupkgPath = `Castle.1.${versionName}.nupkg`;
+
+  // Releasify with Squirrel
+  child_process.execSync(`./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win/ --no-msi`, { stdio: 'inherit' });
+  fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
 }
