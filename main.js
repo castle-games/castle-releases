@@ -113,4 +113,5 @@ if (platform == 'win') {
     `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
     { stdio: 'inherit' });
   fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
+  fs.unlinkSync(`Castle.0.${versionName}.nupkg`);
 }
