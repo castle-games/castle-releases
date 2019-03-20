@@ -54,7 +54,7 @@ if (platform === 'mac') {
         'X-Auth-Token': token,
       },
       qs: {
-        platform: process.argv[2],
+        platform: 'mac',
         tag: commit,
         'installer-filename': zipDest,
       },
@@ -112,6 +112,41 @@ if (platform == 'win') {
   child_process.execSync(
     `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
     { stdio: 'inherit' });
-  fs.renameSync('win/Setup.exe', `win/Castle-${versionName}-Setup.exe`);
+  const setupName = `Castle-${versionName}-Setup.exe`;
+  const setupPath = `win/${setupName}`;
+  fs.renameSync('win/Setup.exe', setupPath);
   fs.unlinkSync(`Castle.0.${versionName}.nupkg`);
+
+  // Make and push a commit
+  console.log('Committing...');
+  child_process.execSync('git add win/*');
+  child_process.execSync(`git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "win: release '${setupName}'"`);
+  console.log('Pushing...');
+  child_process.execSync('git push origin master');
+  const commit = child_process.execSync('git rev-parse HEAD').toString().trim();
+
+  // Let our server know a new release exists
+  console.log('Updating release tag on Castle server...');
+  request.post(
+    {
+      url: 'https://api.castle.games/api/releases/set-tag',
+      headers: {
+        'X-Auth-Token': token,
+      },
+      qs: {
+        platform: 'win',
+        tag: commit,
+        'installer-filename': setupPath,
+      },
+    },
+    function (err, resp, body) {
+      if (err || resp.statusCode !== 200) {
+        console.log('Error! ' + resp.body);
+        process.exit(1);
+      } else {
+        console.log('Success!');
+        process.exit(0);
+      }
+    }
+  );
 }
