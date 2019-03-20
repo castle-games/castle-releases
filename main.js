@@ -74,9 +74,9 @@ if (platform === 'mac') {
 // Example Windows usage:
 //   node main.js win ../build/Release 1.20 ../extra/castle.ico
 if (platform == 'win') {
-  const releaseDirPath = process.argv[3];
+  const releaseDirPath = process.argv[3].replace('/', '\\');
   const versionName = process.argv[4];
-  const iconPath = process.argv[5];
+  const iconPath = process.argv[5].replace('/', '\\');
   if (!releaseDirPath || !versionName || !iconPath) {
     console.log('Not enough parameters!');
     process.exit(0);
@@ -84,7 +84,7 @@ if (platform == 'win') {
 
   // Make our '.exe' 'Squirrel-aware'
   console.log("Making 'Castle.exe' 'Squirrel-aware'...");
-  child_process.execSync(`./Squirrel-bin/rcedit.exe ${releaseDirPath}/Castle.exe --set-version-string SquirrelAwareVersion 1`);
+  child_process.execSync(`.\\Squirrel-bin\\rcedit.exe ${releaseDirPath}\\Castle.exe --set-version-string SquirrelAwareVersion 1`);
 
   // Create '.nupkg'
   console.log(`Creating '.nupkg'...`);
@@ -103,14 +103,14 @@ if (platform == 'win') {
     <file src="**" target="lib\\net45\\" />
   </files>
 </package>`);
-  child_process.execSync(`./Squirrel-bin/nuget.exe pack -BasePath ${releaseDirPath} -NoDefaultExcludes`, { stdio: 'inherit' });
+  child_process.execSync(`.\\Squirrel-bin\\nuget.exe pack -BasePath ${releaseDirPath} -NoDefaultExcludes`, { stdio: 'inherit' });
   fs.unlinkSync('Castle.nuspec');
   const nupkgPath = `Castle.0.${versionName}.nupkg`;
 
   // Releasify with Squirrel
   console.log(`'Releasifying' with Squirrel...`);
   child_process.execSync(
-    `./Squirrel-bin/Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
+    `.\\Squirrel-bin\\Squirrel.exe --releasify ${nupkgPath} --releaseDir win --icon ${iconPath} --setupIcon ${iconPath} --no-msi`,
     { stdio: 'inherit' });
   const setupName = `Castle-${versionName}-Setup.exe`;
   const setupPath = `win/${setupName}`;
