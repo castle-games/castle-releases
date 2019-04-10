@@ -20,7 +20,7 @@ const cleanup = (dirname) => {
 
   // Collect sorted list of unique modification days
   const days = daysAndPaths.map((dayAndPath) => dayAndPath.day);
-  const sortedDays = days.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+  const sortedDays = days.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
   const sortedUniqueDays = [];
   sortedDays.forEach((day) => {
     if (sortedUniqueDays.length == 0 || sortedUniqueDays[sortedUniqueDays.length - 1] !== day) {
