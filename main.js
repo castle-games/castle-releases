@@ -28,10 +28,10 @@ const cleanup = (dirname) => {
     }
   });
 
-  // Collect 10 most recent modification days
-  const recentUpdateDays = sortedUniqueDays.slice(0, 10);
+  // Collect 8 most recent modification days
+  const recentUpdateDays = sortedUniqueDays.slice(0, 8);
 
-  // Delete all files that weren't one of the last 10 updates
+  // Delete all files that weren't one of the last 8 updates
   daysAndPaths.forEach(({ day, path }) => {
     if (!recentUpdateDays.includes(day)) {
       fs.unlinkSync(path);
