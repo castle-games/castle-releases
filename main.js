@@ -2,6 +2,43 @@ const fs = require('fs');
 const request = require('request');
 const child_process = require('child_process');
 
+// Utility function to cleanup directories
+const cleanup = (dirname) => {
+  // Collect modification days (as milliseconds from epoch) per file
+  const filenames = fs.readdirSync(dirname);
+  const daysAndPaths = filenames.map((filename) => {
+    const path = `${dirname}/${filename}`;
+    const date = new Date(
+      child_process
+        .execSync(`git log -1 --format="%ad" -- ${path}`)
+        .toString()
+        .trim()
+    );
+    const day = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+    return { day, path };
+  });
+
+  // Collect sorted list of unique modification days
+  const days = daysAndPaths.map((dayAndPath) => dayAndPath.day);
+  const sortedDays = days.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+  const sortedUniqueDays = [];
+  sortedDays.forEach((day) => {
+    if (sortedUniqueDays.length == 0 || sortedUniqueDays[sortedUniqueDays.length - 1] !== day) {
+      sortedUniqueDays.push(day);
+    }
+  });
+
+  // Collect 10 most recent modification days
+  const recentUpdateDays = sortedUniqueDays.slice(0, 10);
+
+  // Delete all files that weren't one of the last 10 updates
+  daysAndPaths.forEach(({ day, path }) => {
+    if (!recentUpdateDays.includes(day)) {
+      fs.unlinkSync(path);
+    }
+  });
+};
+
 // Make sure the tree is clean
 // console.log('Making sure tree is clean...');
 // if (child_process.execSync('git diff HEAD').length !== 0) {
@@ -37,9 +74,12 @@ if (arg === 'mac') {
   console.log(`Generating 'mac/appcast.xml'...`);
   child_process.execSync('./Sparkle-bin/generate_appcast mac/');
 
+  // Cleanup
+  cleanup('mac');
+
   // Make and push a commit
   console.log('Committing...');
-  child_process.execSync('git add mac/*');
+  child_process.execSync('git add -u mac/');
   child_process.execSync(
     `git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "mac: release '${zipName}'"`
   );
@@ -130,9 +170,12 @@ if (arg == 'win') {
   fs.renameSync('win/Setup.exe', setupPath);
   fs.unlinkSync(`Castle.0.${versionName}.nupkg`);
 
+  // Cleanup
+  cleanup('mac');
+
   // Make and push a commit
   console.log('Committing...');
-  child_process.execSync('git add win/*');
+  child_process.execSync('git add -u win/');
   child_process.execSync(
     `git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "win: release '${setupName}'"`
   );
@@ -170,41 +213,6 @@ if (arg == 'win') {
 }
 
 if (arg == 'cleanup') {
-  const cleanup = (dirname) => {
-    // Collect modification days (as milliseconds from epoch) per file
-    const filenames = fs.readdirSync(dirname);
-    const daysAndPaths = filenames.map((filename) => {
-      const path = `${dirname}/${filename}`;
-      const date = new Date(
-        child_process
-          .execSync(`git log -1 --format="%ad" -- ${path}`)
-          .toString()
-          .trim()
-      );
-      const day = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
-      return { day, path };
-    });
-
-    // Collect sorted list of unique modification days
-    const days = daysAndPaths.map((dayAndPath) => dayAndPath.day);
-    const sortedDays = days.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
-    const sortedUniqueDays = [];
-    sortedDays.forEach((day) => {
-      if (sortedUniqueDays.length == 0 || sortedUniqueDays[sortedUniqueDays.length - 1] !== day) {
-        sortedUniqueDays.push(day);
-      }
-    });
-
-    // Collect 10 most recent modification days
-    const recentUpdateDays = sortedUniqueDays.slice(0, 10);
-
-    // Delete all files that weren't one of the last 10 updates
-    daysAndPaths.forEach(({ day, path }) => {
-      if (!recentUpdateDays.includes(day)) {
-        fs.unlinkSync(path);
-      }
-    });
-  };
   cleanup('mac');
   cleanup('win');
 }
