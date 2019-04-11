@@ -8,14 +8,17 @@ const cleanup = (dirname) => {
   const filenames = fs.readdirSync(dirname);
   const daysAndPaths = filenames.map((filename) => {
     const path = `${dirname}/${filename}`;
-    const date = new Date(
-      child_process
-        .execSync(`git log -1 --format="%ad" -- ${path}`)
-        .toString()
-        .trim()
-    );
-    const day = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
-    return { day, path };
+    const dateString = child_process
+      .execSync(`git log -1 --format="%ad" -- ${path}`)
+      .toString()
+      .trim();
+    if (dateString === '') {
+      return { day: 0, path }; // Untracked
+    } else {
+      const date = new Date(dateString);
+      const day = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+      return { day, path };
+    }
   });
 
   // Collect sorted list of unique modification days
@@ -33,7 +36,7 @@ const cleanup = (dirname) => {
 
   // Delete all files that weren't one of the last 8 updates
   daysAndPaths.forEach(({ day, path }) => {
-    if (!recentUpdateDays.includes(day)) {
+    if (day !== 0 && !recentUpdateDays.includes(day)) { // Don't delete if untracked
       fs.unlinkSync(path);
     }
   });
@@ -80,6 +83,7 @@ if (arg === 'mac') {
   // Make and push a commit
   console.log('Committing...');
   child_process.execSync('git add -u mac/');
+  child_process.execSync('git add mac/*');
   child_process.execSync(
     `git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "mac: release '${zipName}'"`
   );
@@ -176,6 +180,7 @@ if (arg == 'win') {
   // Make and push a commit
   console.log('Committing...');
   child_process.execSync('git add -u win/');
+  child_process.execSync('git add win/*');
   child_process.execSync(
     `git -c "user.name=castle-circleci-access" -c "user.email=services@castle.games" commit -m "win: release '${setupName}'"`
   );
