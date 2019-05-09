@@ -175,7 +175,7 @@ if (arg == 'win') {
   fs.unlinkSync(`Castle.0.${versionName}.nupkg`);
 
   // Cleanup
-  cleanup('mac');
+  cleanup('win');
 
   // Make and push a commit
   console.log('Committing...');
