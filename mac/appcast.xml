@@ -574,6 +574,20 @@
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1001-1.841.delta" sparkle:version="1.1001" sparkle:shortVersionString="1.1001" sparkle:deltaFrom="1.841" length="423191" type="application/octet-stream" sparkle:edSignature="+oWi7C6ibiHF0H1sSKy2WZ26GxDWKziUVZD1uojX6QFA3b7+ZRcrYzduEm/xVPnv7A2xke2XrzG7HS8MO9hCAg=="/>
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1001-1.840.delta" sparkle:version="1.1001" sparkle:shortVersionString="1.1001" sparkle:deltaFrom="1.840" length="427400" type="application/octet-stream" sparkle:edSignature="t3gepP9d4gj9syWdiiOuhi1sBUslLS7ND5X4FiZKlWlkeR+TXStnI7egRQgZOSgpRFax9J4VG3KSHUGYhWxACA=="/></sparkle:deltas>
 </item>
+<item>
+<title>1.1031</title>
+<pubDate>Mon, 17 Jun 2019 17:04:38 -0700</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.1031.zip" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" length="156510957" type="application/octet-stream" sparkle:edSignature="pFxPoJ61/cKGOWRHmfOylpdie/54Vgs+ilYeHHT3hBUPHe3+zyjndQKi8vx75suvFWzq79YYYcj0AE7ptUnVBg=="/>
+<sparkle:deltas>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.1001.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.1001" length="849182" type="application/octet-stream" sparkle:edSignature="O5WpXVNxJjNNOiti/Rzd60i/5mqXbOg1Ve3SG82ix1I4zCoeijWdgY45pNRdSdspQE4wJwUo8fMCmMqJpJ44Bw=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.983.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.983" length="890239" type="application/octet-stream" sparkle:edSignature="hOPekDPt5ovVzSxWcGqnknp5CoJ+wu5TkZqEPnoLTsQDjAPOADdA4L721rBi+BXOEp/7ciLj4m9eNg1cIEtnAw=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.869.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.869" length="1045793" type="application/octet-stream" sparkle:edSignature="asw9hn5xSqgzxUtTWdSXCfLReDpp8G5hToD0BWUpXnw630zqBfJs0uR441osvx5loAvX73tQUCq8FKyHgtgvDQ=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.868.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.868" length="1181063" type="application/octet-stream" sparkle:edSignature="LsRdv+L0mrsNuC0LWztnjAh7z5cE5LYcBJpQml8AKwKwu3sV6/5bbMOlWzhucynOHfPO8VYMFQdoorXxrdQoCQ=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.845.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.845" length="1180955" type="application/octet-stream" sparkle:edSignature="FMlF9VYg8yiENzmtHFDaPXvzXVZ8gYRvgu9r0dGSGZDegEtyJt3gh7y2YhrOn8VWghNhg0pO0nx7jJ2cBydlBg=="/>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle1.1031-1.841.delta" sparkle:version="1.1031" sparkle:shortVersionString="1.1031" sparkle:deltaFrom="1.841" length="1180961" type="application/octet-stream" sparkle:edSignature="DS9ccbb1B/uHGoXtWTdBwF+MPmGO/Smd4uPfj7cbhVsDZq/nD4dHnE5YmvhN8fpbKpxalysqR828JRxmRVbNCg=="/></sparkle:deltas>
+</item>
+
 
 
 
