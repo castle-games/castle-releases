@@ -661,6 +661,13 @@
 <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 <enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.1205.zip" sparkle:version="1.1205" sparkle:shortVersionString="1.1205" length="163248453" type="application/octet-stream" sparkle:edSignature="OXe8GsSBlm4VeUWXNTlkqjbXrsw4Lt2jmB5igN271azUdcPUNpJfo+rKTzamSHPoQ5G5GOOl6h/rjeE/DH1nDA=="/>
 </item>
+<item>
+<title>1.1214</title>
+<pubDate>Mon, 08 Jul 2019 19:26:40 -0700</pubDate>
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+<enclosure url="https://api.castle.games/api/releases/mac/mac/Castle-1.1214.zip" sparkle:version="1.1214" sparkle:shortVersionString="1.1214" length="163249906" type="application/octet-stream" sparkle:edSignature="LUZJrmjX5OOmX5xZoNeLtdOdbf8uXLkIhPirzx793N4nXS5jvHw6pH1dXcA4b3eWCGzpKnmg0lLW7j9LDm+GBQ=="/>
+</item>
+
 
 
 
